@@ -1,0 +1,46 @@
+1724632601493	Copy compilation unit
+1724634045944	Rename resource 'application.properties'
+1724638796355	Rename type 'Group'
+1724649324158	Rename package 'templates.group'
+1724649328822	Move file
+1724649358766	Copy package
+1724649366194	Delete element
+1724649382705	Copy file
+1724650569455	Rename package 'templates.study.copy'
+1724652951829	Move compilation unit
+1724657084735	Delete elements
+1724659831987	Extract local variable 'auth'
+1724661817943	Copy compilation unit
+1724717671901	Copy file
+1724720823519	Move files
+1724722229667	Rename resource 'NewFile.html'
+1724722544866	Copy file
+1724725243698	Move file
+1724725994437	Move file
+1724728868927	Rename package 'templates.group'
+1724728878942	Rename package 'templates.study'
+1724728894616	Rename type 'StudyController'
+1724728959955	Rename type 'MyStudyGroup'
+1724729564236	Rename type 'StudyGroup'
+1724730188103	Rename resource 'from.html'
+1724736083946	Extract local variable 'groupid'
+1724737067395	Delete elements
+1724745526415	Extract local variable 'optUser'
+1724745574329	Extract local variable 'user'
+1724803971761	Rename resource 'NewFile.html'
+1724809747020	Extract local variable 'parti'
+1724826074417	Move file
+1724826088181	Copy file
+1724826094760	Rename resource 'ce.html'
+1724826108287	Copy file
+1724826131444	Copy file
+1724826137033	Copy file
+1724827131869	Delete element
+1724827143622	Delete element
+1724829309872	Extract local variable 'all'
+1724829925656	Extract local variable 'map'
+1724829941399	Extract local variable 'collect'
+1724830432041	Extract local variable 'setStudyGroupDTO'
+1724831335531	Copy compilation unit
+1724831344232	Rename type 'Parti'
+1724890120894	Extract local variable 'PartiId'

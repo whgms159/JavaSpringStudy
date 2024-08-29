@@ -1,0 +1,34 @@
+package com.kosta.domain;
+
+import com.kosta.entity.User;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+public class UserDTO {
+
+	private int id;
+	private String username, name, password;
+	private UserRole role;
+	
+	@Builder
+	public UserDTO(int id, String username, String name, String password, UserRole role) {
+		this.id = id;
+		this.username = username;
+		this.name = name;
+		this.password = password;
+		this.role = role;
+	}
+	
+	public User setUser() {
+		User user = new User();
+		user.setId(id);
+		user.setUsername(id);
+		user.setName(name);
+		user.setPassword(password);
+		return user;
+	}
+	
+	
+}

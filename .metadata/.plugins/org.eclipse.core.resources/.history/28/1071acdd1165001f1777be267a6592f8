@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content">
+	<p>[[${sg.title}]]</p>
+	<p>[[${sg.leader.getName()}]]</p>
+	<p><span>모집 기간 [[${sg.startedAt}]]~[[${sg.finishedAt}]]</span></p>
+	<p></p>
+	
+	
+	
+	
+	<form th:if="${sg.mine}" action="/studygroup/delete" th:method="DELETE" >
+	    <input type="hidden" name="id" th:value="${sg.id}"/>
+        <button class="btn btn-danger" >삭제</button>
+    </form>
+    
+    
+    <form th:if="${!sg.mine && sg.joined}"
+        action="" method="">
+        <input type="hidden" name="id" th:value="${sg.id}"/>
+        <button class="btn btn-primary">탈퇴</button>
+        <!-- 파티에서 제거 -->
+    </form>
+    
+    <form th:if="${!sg.mine && !sg.joined}"
+        action="" method="">
+        <input type="hidden" name="id" th:value="${sg.id}"/>
+        <button class="btn btn-primary">신청</button>
+        <!-- 파티에 추가 -->
+    </form>
+     
+</div>
+
+
+</html>
+<!-- <form th:method="DELETE" th:if="${#authentication.principal.id eq sg.leader}" 
+           th:action="/studygroup/delete"> -->

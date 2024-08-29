@@ -1,0 +1,31 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.kosta.entity.Parti;
+import com.kosta.repository.PartiRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Controller
+public class PartiController {
+	private final PartiRepository partiRepository;
+	
+	@GetMapping("/list")
+	public String getMyGroupList(Parti parti, Model model) {
+		List<Parti> myGroupList = partiRepository.getMyGroupList();
+		model.addAttribute("list", myGroupList);
+		return "list";
+	}
+	
+	@GetMapping("/list")
+	public String getMyGroup(int id) {
+		partiRepository.getMyGroup(id);
+		return "list";
+	}
+}

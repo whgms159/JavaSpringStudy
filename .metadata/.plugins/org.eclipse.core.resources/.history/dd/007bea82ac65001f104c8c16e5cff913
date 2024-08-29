@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<head>
+   <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 아이콘 추가 (선택사항) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 사용자 정의 CSS 애니메이션 추가 -->
+    <style>
+        /* 전체 페이지 로딩 애니메이션 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeInBody 1s ease-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* 카드를 위한 스타일 */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 리스트 아이템 스타일 */
+        .list-group-item {
+            border: 1px solid #e3e6f0;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+            border-color: #007bff;
+        }
+
+        .list-group-item a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .list-group-item a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        /* 슬라이드 애니메이션 */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 버튼 스타일 */
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* 텍스트 애니메이션 */
+        .text-animate {
+            display: inline-block;
+            animation: textIn 1s ease-out;
+        }
+
+        @keyframes textIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<div layout:fragment="content">
+	<div class="col" th:each="parti : ${partiList}">
+		<div class="card mt-4 border border-2 border-success"
+			style="height: 150px">
+			<div class="card-header bg-success-subtle">[[${parti.id}]]</div>
+			<div class="card-body"
+				th:onclick="|location.href='/studygroup/detail/'+${parti.group.id}|"
+				role='button'>
+				<span class="card-title">작성자 : [[${parti.member.username}]]</span><br/>
+				<span class="card-title">제목 : [[${parti.group.title}]]</span>
+				<form action="/mystudy/delete" th:method="DELETE">
+				    <input type="hidden" name="id" th:value="${parti.id}">
+					<button class="btn btn-danger">삭제</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

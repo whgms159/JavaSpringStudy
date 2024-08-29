@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"    
+>
+
+<div layout:fragment="content">
+    <div sec:authorize="isAuthenticated()">
+        <p>
+            <span sec:authentication="name"></span>하욤
+        </p>
+       
+    </div>
+    <ul>
+        <li sec:authorize="isAuthenticated()">전체 스터디 그룹 보기></li>
+        <li sec:authorize="isAuthenticated()">참여 중인 스터디 그룹 보기</li>
+        <li sec:authorize="isAuthenticated()">스터디 그룹 만들기</li>
+        <li sec:authorize="hasAuthority('LEADER')">내가 만든 스터디 그룹 관리</li>
+    </ul>
+</div>
+</html>
+

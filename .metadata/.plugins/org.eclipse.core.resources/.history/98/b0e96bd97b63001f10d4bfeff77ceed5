@@ -1,0 +1,37 @@
+package com.kosta.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.repository.GroupRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class GroupServiceImpl implements GroupService{
+	private final GroupRepository groupRepository;
+
+	@Override
+	public List<StudyGroup> getAllGroup() {
+		
+		return groupRepository.findAll();
+	}
+
+//	@Override
+//	public StudyGroup getGroup(int id) {
+//		
+//		return groupRepository.findById(id);
+//	}
+
+	@Override
+	public StudyGroup save(User user) {
+		
+		return groupRepository.save(user);
+	}
+
+	
+}

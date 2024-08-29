@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"
+>
+<head>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 아이콘 추가 (선택사항) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 사용자 정의 CSS 애니메이션 추가 -->
+    <style>
+        /* 전체 페이지 로딩 애니메이션 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeInBody 1s ease-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* 카드를 위한 스타일 */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 리스트 아이템 스타일 */
+        .list-group-item {
+            border: 1px solid #e3e6f0;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            transform: translateX(5px);
+            border-color: #007bff;
+        }
+
+        .list-group-item a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .list-group-item a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        /* 슬라이드 애니메이션 */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 버튼 스타일 */
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* 텍스트 애니메이션 */
+        .text-animate {
+            display: inline-block;
+            animation: textIn 1s ease-out;
+        }
+
+        @keyframes textIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content" class="container mt-4">
+    <!-- 주요 콘텐츠 영역 -->
+    <div class="animated-section">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title text-animate">피곤에 좋은 영양제</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="https://namu.wiki/w/%EB%B9%84%ED%83%80%EB%AF%BC">비타민</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://namu.wiki/w/%EC%BD%94%EC%97%94%EC%9E%90%EC%9E%84%20Q10">코엔자임</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://www.chamc.co.kr/health/e_clinic/content.asp?cc_id=10802&co_id=1129&ct_id=108">마그네슘</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://namu.wiki/w/%ED%99%8D%EC%82%BC">홍삼</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://namu.wiki/w/%EC%B2%A0(%EC%9B%90%EC%86%8C)?from=%EC%B2%A0%EB%B6%84#s-5.2">철분</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 사용자 인증 여부에 따른 영역 -->
+    <div sec:authorize="isAuthenticated()" class="animated-section alert alert-info">
+        <p class="text-animate">
+            이 양반 또 왔네
+        </p>
+    </div>
+
+    <!-- 스터디 그룹 링크 목록 -->
+    <ul class="list-group mt-4">
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/list" class="text-decoration-none text-animate">전체 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/mystudy/list" class="text-decoration-none text-animate">참여 중인 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/add" class="text-decoration-none text-animate">스터디 그룹 만들기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="hasAuthority('LEADER')">
+            <a href="#" class="text-decoration-none text-animate">내가 만든 스터디 그룹 관리</a>
+        </li>
+    </ul>
+
+</div>
+
+<!-- 부트스트랩 및 jQuery JS 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

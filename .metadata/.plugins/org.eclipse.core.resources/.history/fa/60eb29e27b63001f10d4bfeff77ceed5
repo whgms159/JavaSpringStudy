@@ -1,0 +1,49 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.service.GroupService;
+
+import lombok.RequiredArgsConstructor;
+
+@RequestMapping("/group")
+@Controller
+@RequiredArgsConstructor
+public class GroupController {
+	private final GroupService groupService;
+	
+	@GetMapping("/list")
+	public String getAllGroup(User user, Model model){ //그룹 전체 조회
+		List<StudyGroup> groupList = groupService.getAllGroup(user);
+		model.addAttribute("list", groupList);
+		return "my";
+	}
+	
+//	@GetMapping("/list")
+//	public String getGroup(int id) { //특정 그룹 조회
+//		groupService.getGroup(id);
+//		return "list";
+//	}
+	
+	@GetMapping("/add")
+	public String addGroupPage() {//그룹 추가 화면
+		return "form";
+	}
+	@PostMapping("/add")
+	public String addGroup(User user) {//그룹 추가
+		groupService.save(user);
+		return "redirect:/list";
+	}
+	
+	
+	
+
+}

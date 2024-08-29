@@ -1,0 +1,56 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.service.GroupService;
+
+import lombok.RequiredArgsConstructor;
+
+
+@Service
+@RequiredArgsConstructor
+public class StudyGroupController {
+	private GroupService groupService;
+	
+	@GetMapping("/list")
+	public String getAllGroup(StudyGroup sg, Model model) {
+		List<StudyGroup> groupList = groupService.getAllGroup();
+		model.addAttribute("list", groupList);
+		return "studygroup/list";
+	}
+	@GetMapping("/add")//추가 화면
+	public String addGroupPage() {
+		
+		return "studygroup/form";
+	}
+	@PostMapping("/add")//실제 추가
+	public String addGroup(StudyGroup sg, @AuthenticationPrincipal User user) {
+		groupService.save(sg, user);
+		return "redirect:/studygroup/list";
+		
+	}
+	@DeleteMapping("/delete/{id}")//삭제
+	public String deleteGroup(@PathVariable("id") int id) {
+		groupService.deleteGroup(id);
+		return "redirect:/studygroup/list";
+	}
+	@GetMapping("/detail/{id}")
+	public String detailGroup(@PathVariable("id") int id, Model model) {
+		StudyGroup sg = groupService.findById(id);
+		model.addAttribute("sg",sg);
+		return "studygroup/detail";
+	}
+	
+
+}

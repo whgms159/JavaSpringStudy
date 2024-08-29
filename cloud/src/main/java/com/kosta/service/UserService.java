@@ -1,0 +1,29 @@
+package com.kosta.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.kosta.domain.UserDTO;
+import com.kosta.entity.User;
+
+public interface UserService {
+
+	User save(User user);
+
+	Optional<User> getUser(int id);
+
+	List<User> getAllUser();
+
+	void deleteUser(int id);
+
+	User modifyUser(User user);
+
+	void modifyUser(int id);
+
+	void join(UserDTO userDTO);
+
+	User findById(int leaderId);
+
+	
+
+}

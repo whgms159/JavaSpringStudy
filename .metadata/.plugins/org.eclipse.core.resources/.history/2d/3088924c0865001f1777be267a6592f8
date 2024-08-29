@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"    
+>
+<head>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 아이콘 추가 (선택사항) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 사용자 정의 CSS 애니메이션 추가 -->
+    <style>
+        /* 전체 페이지 로딩 애니메이션 */
+        body {
+            opacity: 0;
+            animation: fadeInBody 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* 카드 애니메이션 효과 */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border-color: #007bff;
+        }
+
+        /* 리스트 아이템 애니메이션 효과 */
+        .list-group-item {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .list-group-item:hover {
+            background-color: #f1f1f1;
+            transform: translateX(5px);
+            border-color: #007bff;
+        }
+
+        /* 슬라이드 애니메이션 */
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* 버튼 애니메이션 */
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 애니메이션을 위한 섹션 */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content" class="container mt-4">
+    <div class="animated-section">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">피곤에 좋은 영양제</h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="https://namu.wiki/w/%EB%B9%84%ED%83%80%EB%AF%BC">비타민</a></li>
+                    <li class="list-group-item"><a href="/yyj/cez">코엔자임</a></li>
+                    <li class="list-group-item"><a href="/yyj/mg">마그네슘</a></li>
+                    <li class="list-group-item"><a href="https://namu.wiki/w/%ED%99%8D%EC%82%BC">홍삼</a></li>
+                    <li class="list-group-item"><a href="/yyj/cb">철분</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div sec:authorize="isAuthenticated()" class="animated-section alert alert-info">
+        <p>
+            <span sec:authentication="name"></span>하욤
+        </p>
+    </div>
+    
+    <ul class="list-group mt-4">
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/list" class="text-decoration-none">전체 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/mystudy/list" class="text-decoration-none">참여 중인 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/add" class="text-decoration-none">스터디 그룹 만들기</a>
+        </li>
+        <li class="list-group-item animated-section" sec:authorize="hasAuthority('LEADER')">
+            <a href="#" class="text-decoration-none">내가 만든 스터디 그룹 관리</a>
+        </li>
+    </ul>
+</div>
+
+<!-- 부트스트랩 및 jQuery JS 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

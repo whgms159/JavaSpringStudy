@@ -1,0 +1,52 @@
+1724026577867	Rename resource 'application.properties'
+1724026585228	Rename resource 'application.ㅛㅢ'
+1724027241563	Copy compilation unit
+1724027281890	Copy compilation unit
+1724027292188	Copy compilation unit
+1724027316545	Copy compilation unit
+1724027345135	Copy compilation unit
+1724028644960	Delete element
+1724028716486	Copy package
+1724028728142	Rename package 'user'
+1724028740099	Rename resource 'usermapper.xml'
+1724029417956	Copy package
+1724029442360	Move packages
+1724030045181	Copy compilation unit
+1724030288096	Extract local variable 'isAdd'
+1724030518796	Extract local variable 'user'
+1724031267142	Rename package 'templates'
+1724031271192	Move file
+1724031274697	Delete element
+1724033416630	Delete element
+1724033735675	Rename package 'mapper.user'
+1724033737750	Move file
+1724033742535	Delete element
+1724033749531	Rename package 'templates.layouts'
+1724033767168	Copy package
+1724033775141	Delete element
+1724033809677	Move file
+1724033811050	Move file
+1724033823174	Move file
+1724033967449	Rename resource 'add.html'
+1724033979559	Move file
+1724033980449	Move file
+1724033982887	Delete element
+1724034280161	Move compilation units
+1724034295073	Move compilation units
+1724034308403	Move compilation units
+1724034311048	Delete element
+1724034312546	Delete element
+1724034314129	Delete element
+1724034372954	Move file
+1724034374470	Move file
+1724034392838	Delete element
+1724036705125	Copy file
+1724037440716	Delete element
+1724038413774	Copy file
+1724048888354	Copy file
+1724051748614	Extract local variable 'user'
+1724052202788	Extract local variable 'originFileName'
+1724116609019	Extract local variable 'originalName'
+1724116623511	Extract local variable 'newName'
+1724130434185	Move source folder
+1724136172471	Extract local variable 'communityList'

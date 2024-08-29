@@ -1,0 +1,24 @@
+package com.kosta.domain;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+public class UserDTO {
+
+	private int id;
+	private String nickname, name, password;
+	private UserRole role;
+	
+	@Builder
+	public UserDTO(int id, String nickname, String name, String password, UserRole role) {
+		this.id = id;
+		this.nickname = nickname;
+		this.name = name;
+		this.password = password;
+		this.role = role;
+	}
+	
+	
+	
+}

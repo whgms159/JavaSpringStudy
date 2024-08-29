@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body{opacity:0;animation:fadeInBody 1s ease-out forwards;background-color:#f8f9fa;}
+        @keyframes fadeInBody{to{opacity:1;}}
+        .table-custom{width:100%;border-radius:10px;overflow:hidden;background-color:#ffffff;box-shadow:0 4px 8px rgba(0,0,0,0.1);transition:all 0.3s ease;border-collapse:collapse;}
+        .table-custom thead th{background-color:#007bff;color:#ffffff;padding:12px;text-align:center;font-weight:bold;border-bottom:2px solid #0056b3;}
+        .table-custom tbody tr{transition:background-color 0.3s ease;}
+        .table-custom tbody tr:hover{background-color:#f1f1f1;}
+        .table-custom td{padding:12px;text-align:center;border-bottom:1px solid #dee2e6;}
+        .table-custom tr:last-child td{border-bottom:0;}
+        .btn-success{background:linear-gradient(135deg,#28a745,#218838);border:none;color:#ffffff;font-size:1rem;padding:12px 24px;border-radius:25px;transition:all 0.3s ease;box-shadow:0 4px 8px rgba(0,0,0,0.2);}
+        .btn-success:hover{background:linear-gradient(135deg,#218838,#28a745);transform:scale(1.05);box-shadow:0 8px 16px rgba(0,0,0,0.3);}
+        .btn-success:focus,.btn-success:active{box-shadow:0 0 0 0.2rem rgba(0,0,0,0.2);}
+        .animated-section{opacity:0;transform:translateY(20px);animation:fadeInUp 1s forwards;margin-top:20px;}
+        @keyframes fadeInUp{to{opacity:1;transform:translateY(0);}}
+        .container{padding:20px;}
+        .row{margin-top:20px;}
+        .col-md-6{display:flex;justify-content:center;}
+        .text-success{color:#28a745!important;}
+        a{text-decoration:none;color:#007bff;transition:color 0.3s ease;}
+        a:hover{color:#0056b3;text-decoration:underline;}
+        .table-custom thead th{background-color:#343a40;color:#ffffff;transition:background-color 0.3s ease;}
+        .table-custom tbody tr{transition:transform 0.3s ease;}
+        .table-custom tbody tr:hover{transform:scale(1.02);}
+        .table-custom tbody tr:nth-child(odd){background-color:#f8f9fa;}
+        .table-custom tbody tr:nth-child(even){background-color:#ffffff;}
+        .table-custom tbody td{border:1px solid #dee2e6;padding:15px;}
+        .table-custom tbody td a{color:#007bff;transition:color 0.3s ease;}
+        .table-custom tbody td a:hover{color:#0056b3;}
+        .btn-success{font-size:1.1rem;padding:14px 28px;border-radius:30px;transition:all 0.4s ease;box-shadow:0 5px 10px rgba(0,0,0,0.2);}
+        .btn-success:hover{transform:scale(1.1);box-shadow:0 6px 12px rgba(0,0,0,0.3);}
+        .btn-success:focus{box-shadow:0 0 0 0.3rem rgba(0,0,0,0.3);}
+        .table-custom td:first-child{border-left:2px solid #007bff;}
+        .table-custom td:last-child{border-right:2px solid #007bff;}
+        .btn-success{font-weight:bold;}
+        .text-center{text-align:center;}
+        .table-custom thead th{padding:16px;}
+        .table-custom tbody tr{transition:background-color 0.4s ease,transform 0.4s ease;}
+        .table-custom tbody tr:hover{background-color:#e9ecef;transform:translateY(-3px);}
+        .animated-section{border:1px solid #dee2e6;padding:20px;border-radius:10px;box-shadow:0 2px 4px rgba(0,0,0,0.1);}
+        .btn-success{font-weight:600;line-height:1.5;}
+        .btn-success i{margin-right:8px;}
+        .btn-success:hover i{transform:rotate(15deg);}
+        .btn-success:active i{transform:rotate(0deg);}
+        .table-custom td{font-size:1rem;line-height:1.6;}
+        .table-custom thead th{font-size:1.2rem;}
+        .btn-success{border-radius:30px;}
+        .table-custom td a{font-size:1rem;display:inline-block;}
+        .table-custom tbody tr:hover td a{color:#0056b3;}
+        .table-custom thead th{padding:15px;text-transform:uppercase;}
+        .table-custom tbody tr{border-top:1px solid #dee2e6;}
+        .container{max-width:1200px;}
+        .table-custom tbody td{padding:10px;}
+        .animated-section{transition:opacity 0.5s ease,transform 0.5s ease;}
+        .container{padding:30px;}
+        .text-success{font-size:1.1rem;}
+        .btn-success{font-size:1.2rem;padding:15px 30px;}
+        .table-custom td{padding:14px;}
+        .table-custom thead th{padding:18px;}
+        .btn-success:hover{background:linear-gradient(135deg,#1e7e34,#2e8b57);}
+        .table-custom tbody td{border:1px solid #d6d6d6;}
+        .btn-success:focus,.btn-success:active{outline:none;}
+    </style>
+</head>
+<body>
+<div layout:fragment="content" class="container mt-4">
+    <div class="animated-section">
+        <table class="table table-custom">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>제목</th>
+                    <th>상세 보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="group : ${list}">
+                    <td>[[${group.id}]]</td>
+                    <td>[[${group.title}]]</td>
+                    <td>
+                        <a href="/studygroup/detail/[[${group.id}]]" class="btn btn-success">
+                            <i class="fas fa-eye"></i> 보기
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-success" onclick="location.href='/studygroup/add'">
+            <i class="fas fa-plus"></i> 그룹 추가
+        </button>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

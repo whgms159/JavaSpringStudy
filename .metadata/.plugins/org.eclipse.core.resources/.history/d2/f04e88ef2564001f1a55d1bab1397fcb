@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"   
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<div th:fragment="header" class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 text-secondary">메인</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/group" class="nav-link px-2 text-secondary">리스트</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/study" class="nav-link px-2 text-secondary">마이페이지</a></li>
+        </ul>
+
+        <div class="text-end">
+            <div sec:authorize="!isAuthenticated()">
+	            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalSignin">로그인</button>   
+	            <button type="button" class="btn btn-warning" onclick="location.href='/join'">회원가입</button>
+            </div>
+            <form sec:authorize="isAuthenticated()" action="/logout" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-secondary">로그아웃</button>
+            </form>
+        </div>
+    </div>
+	<!-- Modal -->
+	<div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="modalSigninLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content rounded-4 shadow">
+	            <div class="modal-header p-5 pb-4 border-bottom-0">
+	                <h1 class="modal-title fs-5" id="modalSigninLabel">로그인</h1>
+	                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body p-5 pt-0">
+	                <h1 class="fw-bold mb-0 fs-2">로그인 부탁</h1>
+	                <form action="/login" method="POST">
+	                    <div class="form-floating mb-3">
+	                        <input class="form-control rounded-3" name="username" id="floatingInput" placeholder="name@example.com">
+	                        <label for="floatingInput">닉네임</label>
+	                    </div>
+	                    <div class="form-floating mb-3">
+	                        <input class="form-control rounded-3" name="password" id="floatingPassword" placeholder="Password">
+	                        <label for="floatingPassword">빔1번호</label>
+	                    </div>
+	                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">로그인</button>
+	                    <small class="text-muted">아 졸려</small>
+	                    <hr class="my-4">
+	                    <h2 class="fs-5 fw-bold mb-3" style="width:50%">목차</h2>
+	                    <a class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" href="/group">전체 스터디 그룹 보기</a>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+</html>

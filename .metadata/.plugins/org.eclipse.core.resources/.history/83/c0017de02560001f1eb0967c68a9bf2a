@@ -1,0 +1,27 @@
+package com.kosta.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.kosta.service.BlogService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class BlogController {
+	private final BlogService blogService;
+	
+	@GetMapping("/add")//추가 화면
+	public String addPage() throws Exception{
+		return "form";
+	}
+	
+	//실제 추가
+	
+	//디테일 화면
+	
+	//삭제
+	
+	
+}

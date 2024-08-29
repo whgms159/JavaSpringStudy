@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}">
+<head>
+<meta charset="UTF-8">
+<title>상세 설명</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div>
+        <h2 class="text-center mb-4">제품 상세 설명</h2>
+        <hr/>
+        <div class="container mt-5 mx-auto">
+        <h2 class="text-center mb-4">저는${product.name}입니다</h2>
+        <hr/>
+        <div class="card mx-auto" style="width :500px; height : 500px;">
+            <div class = "card-body">
+      
+                <p class="card-text">내용 : ${product.content}</p>
+ 
+            </div>
+        </div>
+        <hr/>
+        <a href="/notebook" class="btn btn-primary">뒤로가기</a><br/><br/>
+        
+        <button class="btn btn-outline-success collapse-button" onclick="alert('따봉')">추천</button>
+            
+        <button class="btn btn-outline-danger collapse-button" onclick="alert('안 따봉')">비추천</button> 
+
+    </div>
+    </div>
+</body>
+</html>

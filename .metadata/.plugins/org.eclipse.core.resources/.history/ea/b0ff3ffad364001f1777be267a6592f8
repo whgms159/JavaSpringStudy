@@ -1,0 +1,37 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kosta.entity.Parti;
+import com.kosta.service.PartiService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequestMapping("/mystudy/**")
+@RequiredArgsConstructor
+public class MyStudyController {
+	private final PartiService partiService;
+	
+	@GetMapping("/list")//내가 참여중인 스터디 목록
+	public String partiList(Model model) {
+		List<Parti> partiList = partiService.getAllParti();
+		model.addAttribute("partiList", partiList);
+		return "/mystudy/list";
+	}
+	
+	@DeleteMapping("/delete/{id}")//스터티 탈퇴
+	public String deleteParti(@PathVariable("id") int id) {
+		partiService.deleteParti(id);
+		return "redirect:/mystudy/list";
+	}
+	
+	
+}

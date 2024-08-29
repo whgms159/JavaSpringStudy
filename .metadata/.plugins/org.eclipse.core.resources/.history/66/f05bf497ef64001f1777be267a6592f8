@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content">
+	<div class="col" th:each="parti : ${partiList}">
+		<div class="card mt-4 border border-2 border-success"
+			style="height: 150px">
+			<div class="card-header bg-success-subtle">[[${parti.id}]]</div>
+			<div class="card-body"
+				th:onclick="|location.href='/mystudy/detail/'+${parti.id}|"
+				role='button'>
+				<h5 class="card-title">[[${parti.member.username}]]</h5>
+				<h5 class="card-title">[[${parti.group.title}]]</h5>
+			<form>
+			    <button class="btn btn-danger">삭제</button>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

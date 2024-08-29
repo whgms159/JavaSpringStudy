@@ -1,0 +1,22 @@
+package com.kosta.service;
+
+import java.util.List;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+
+public interface GroupService {
+
+	List<StudyGroup> getAllGroup();
+
+	
+
+	
+
+	void addGroupPage();
+
+	void save(com.kosta.controller.StudyGroup sg, User user);
+
+//	StudyGroup getGroup(int id);
+
+}

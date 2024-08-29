@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <form th:action="${stu eq null? '/add' : '/modify'}" method="POST">
+        <input type="hidden" name="id" th:if="${stu ne null}" th:value="${stu.id}"/>
+        <input name="name" placeholder="입력" th:value="${stu eq null ? '':stu.name}"/>
+        <button>추가</button>
+    </form>
+</body>
+</html>

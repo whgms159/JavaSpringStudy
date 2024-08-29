@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"   
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+>
+
+<div th:fragment="header" class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/index" class="nav-link px-2 text-secondary">메인</a></li>
+          <li><a href="/group" class="nav-link px-2 text-secondary">리스트</a></li>
+          <li><a href="/study" class="nav-link px-2 text-secondary">마이페이지</a></li>
+        </ul>
+
+        <div class="text-end">
+        <form sec:authorize="!isAuthenticated()" action="/login" method="POST">
+          <button type="submit" class="btn btn-secondary" onclick="location.href='/index2'">로그인</button>
+          <button type="submit" class="btn btn-warning" onclick="location.href='/join'">회원가입</button>
+        </form>
+        <div sec:authorize="isAuthenticated()">
+        <form action="/logout" method="POST">
+            <button type="button" class="btn btn-warning">로그아웃</button>
+        </form>
+        </div>
+         
+        </div>
+      </div>
+</div>
+</html>

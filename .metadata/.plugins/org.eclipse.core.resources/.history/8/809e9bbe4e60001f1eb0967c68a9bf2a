@@ -1,0 +1,36 @@
+package com.kosta.common;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class WebSecurityConfig {
+	
+	@Bean
+	WebSecurityCustomizer confiuer() {
+		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/static/**"));
+	}
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		return http.authorizeHttpRequests(auth -> auth.requestMatchers(
+				//인증 , 인가 설정(특정한 URL 액세스를 설정)
+				new AntPathRequestMatcher("/login"), new AntPathRequestMatcher("/join")
+				).permitAll()
+				.anyRequest().authenticated())
+				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/blog/list"))
+				.logout(logout -> logout.logoutSuccessUrl("/login").invalidateHttpSession(true))
+				.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable).build()
+				;
+	}
+	
+}

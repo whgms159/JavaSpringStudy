@@ -1,0 +1,61 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.kosta.entity.User;
+import com.kosta.service.UserService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class UserController {
+	private final UserService userService;
+	
+	@GetMapping("/userList")
+	public String getAllUser(User user){//유저 전체 조회
+		List<User> userList = userService.getAllUser(user);;
+		
+		return "userList";
+	}
+	
+	@GetMapping("/userList")
+	public String getUser(int id) {//특정 회원 조회
+		userService.getUser(id);
+		return "userList";
+	}
+	
+	@GetMapping("/add")
+	public String addPage() {//회원 추가 화면
+		return "form";
+		
+	}
+	@PostMapping("/add")
+	public String addUser(User user) {
+		userService.save(user);
+		return "redirect:/list";
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String deleteUser(@PathVariable("id") int id) {//회원 삭제
+		userService.deleteUser(id);
+		return "redirect:/list";
+	}
+	
+	@PatchMapping("/modify/{id}")
+	public String modifyUser(@PathVariable("id")int id) { //회원 수정
+		userService.modifyUser(id);
+		return "redirect:/list";
+	}
+	@GetMapping("/modify")
+	public String modifyPage() {
+		return "form";
+	}
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 아이콘 추가 (선택사항) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 사용자 정의 CSS 애니메이션 추가 -->
+    <style>
+        /* 전체 페이지 로딩 애니메이션 */
+        body {
+            opacity: 0;
+            animation: fadeInBody 1s ease-out forwards;
+            background-color: #f8f9fa;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* 테이블 스타일링 */
+        .table-custom {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-collapse: collapse;
+        }
+
+        .table-custom thead th {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .table-custom tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table-custom td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .table-custom tr:last-child td {
+            border-bottom: 0;
+        }
+
+        /* 버튼 스타일링 */
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #218838);
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #218838, #28a745);
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-success:focus, .btn-success:active {
+            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.2);
+        }
+
+        /* 애니메이션을 위한 섹션 */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 추가적인 스타일링 */
+        .container {
+            padding: 20px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        .col-md-6 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-success {
+            color: #28a745 !important;
+        }
+
+        /* 링크 스타일링 */
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="content" class="container mt-4">
+    <!-- 테이블을 감싸는 섹션 -->
+    <div class="animated-section">
+        <table class="table table-custom">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>제목</th>
+                    <th>상세 보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="group : ${list}">
+                    <td>[[${group.id}]]</td>
+                    <td>[[${group.title}]]</td>
+                    <td>
+                        <a href="/studygroup/detail/[[${group.id}]]" class="btn btn-success">
+                            <i class="fas fa-eye"></i> 보기
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 버튼 추가 섹션 -->
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-success" onclick="location.href='/studygroup/add'">
+            <i class="fas fa-plus"></i> 그룹 추가
+        </button>
+    </div>
+</div>
+
+<!-- 부트스트랩 및 jQuery JS 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

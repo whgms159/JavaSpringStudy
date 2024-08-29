@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"    
+>
+<head>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .fade-in {
+            animation: fadeIn 30s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-in {
+            animation: slideIn 30s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="visually-hidden">Loading...</span>
+</button>
+<button class="btn btn-primary" type="button" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+</button>
+<div layout:fragment="content" class="container mt-4 fade-in">
+    <div class="card mb-4 slide-in">
+        <div class="card-body">
+            <h4 class="card-title">피곤에 좋은 영양제</h4>
+            <ul class="list-group">
+                <li class="list-group-item">비타민</li>
+                <li class="list-group-item">코엔자임</li>
+                <li class="list-group-item">마그네슘</li>
+                <li class="list-group-item">홍삼</li>
+                <li class="list-group-item">철분</li>
+            </ul>
+        </div>
+    </div>
+    <div sec:authorize="isAuthenticated()" class="alert alert-info slide-in">
+        <p>
+            <span sec:authentication="name"></span>하욤
+        </p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/list">전체 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item" sec:authorize="isAuthenticated()">
+            <a href="/mystudy/list">참여 중인 스터디 그룹 보기</a>
+        </li>
+        <li class="list-group-item" sec:authorize="isAuthenticated()">
+            <a href="/studygroup/add">스터디 그룹 만들기</a>
+        </li>
+        <li class="list-group-item" sec:authorize="hasAuthority('LEADER')">
+            <a href="#">내가 만든 스터디 그룹 관리</a>
+        </li>
+    </ul>
+</div>
+
+<!-- 부트스트랩 및 jQuery JS 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

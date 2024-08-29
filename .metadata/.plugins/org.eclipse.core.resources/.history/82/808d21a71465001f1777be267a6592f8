@@ -1,0 +1,33 @@
+package com.kosta.domain;
+
+import java.time.LocalDate;
+
+import com.kosta.entity.Parti;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+
+
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PartiDTO {
+	
+	private int id;
+	private UserDTO member;
+	private StudyGroupDTO group;
+	private LocalDate updatedAt;
+
+	public static PartiDTO setPartiDTO(Parti p) {
+		return PartiDTO.builder()
+				.id(p.getId())
+				.member(p.getMember())
+				.group(p.getGroup())
+				.updateAt
+				
+	}
+}

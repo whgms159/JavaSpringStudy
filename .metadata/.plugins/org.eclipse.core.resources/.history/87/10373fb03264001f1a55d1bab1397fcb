@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"    
+>
+<body>
+	<div class="col" th:each="group : ${list}">
+		<div class="card mt-4 border border-2 border-success"
+			style="height: 150px">
+			<div class="card-header bg-success-subtle">[[${group.id}]]</div>
+			<div class="card-body"
+				th:onclick="|location.href='/group/detail/'+${group.id}|"
+				role='button'>
+				<h5 class="card-title">[[${group.title}]]</h5>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="btn btn-success" onclick="location.href='/form'">그룹 추가</button> 
+</body>
+</html>

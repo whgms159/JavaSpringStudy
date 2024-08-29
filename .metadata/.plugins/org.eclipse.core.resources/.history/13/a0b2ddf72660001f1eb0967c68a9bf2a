@@ -1,0 +1,35 @@
+package com.kosta.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.entity.Article;
+import com.kosta.repository.BlogRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class BlogServiceImpl implements BlogService {
+	private final BlogRepository blogRepository;
+	
+	@Override
+	public void addArticle(Article article) throws Exception {
+		blogRepository.save(article);
+		
+	}
+
+	@Override
+	public List<Article> findAll() throws Exception {
+		
+		return blogRepository.findAll();
+	}
+
+	@Override
+	public void findById(int id) throws Exception {
+		blogRepository.findById(id);
+		
+	}
+
+}

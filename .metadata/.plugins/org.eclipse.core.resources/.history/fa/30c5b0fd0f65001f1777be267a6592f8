@@ -1,0 +1,77 @@
+package com.kosta.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.domain.StudyGroupDTO;
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.repository.GroupRepository;
+import com.kosta.repository.PartiRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class GroupServiceImpl implements GroupService{
+	private final GroupRepository groupRepository;
+	private final PartiRepository partiRepository;
+	
+
+	@Override
+	public List<StudyGroupDTO> getAllGroup() {
+		List<StudyGroup> all = groupRepository.findAll();
+		
+		List<StudyGroupDTO> resultList = all.stream().map(sg ->
+			StudyGroupDTO.setStudyGroupDTO(sg)
+		).toList();
+		
+		
+//		List<Parti> pList = partiRepository.findByGroupId(?); 
+		
+		// 만약에 로그인한 사용자와 리더가 같으면, 로그인한 사용자가 생성한 스터디그룹
+		
+		// parti 리스트를 조회 (스터디 그룹 아이디로) > 가입한 멤버 목록을 알 수 있다.
+		// 만약에 로그인한 사용자가 그 리스트 안에 있으면, 가입된 애
+		
+		
+		return resultList;
+	}
+
+
+	@Override
+	public StudyGroup save(StudyGroup sg, User user) {
+		sg.setLeader(user);
+		return groupRepository.save(sg);
+		
+	}
+
+
+	@Override
+	public void deleteGroup(int id) {
+		groupRepository.deleteById(id);
+		
+	}
+
+
+	@Override
+	public StudyGroupDTO findById(int id) throws Exception {
+		// 내 스터디 그룹
+		// 내가 가입한 스터디 그룹
+		// 남의 스터디 그룹
+		
+		Optional<StudyGroup> groupId = groupRepository.findById(id);
+		StudyGroup sg = groupId.orElseThrow(() -> new Exception("오류겐"));
+		
+		StudyGroupDTO studyGroupDTO = StudyGroupDTO.setStudyGroupDTO(sg);
+		studyGroupDTO.setMine(false);
+		return null;
+	}
+
+
+	
+}

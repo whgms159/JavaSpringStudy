@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/default}"    
+>
+<div layout:fragment="content">
+    그룹 등록
+    <form action="/studygroup/add" method="POST">
+        <input name="title" placeholder="제목">
+        <input name="leaderId" placeholder="그룹장">
+        <input name="startedAt" placeholder="시작일" type="date">
+        <input name="finishedAt" placeholder="시작일" type="date">
+        
+        <button>등록</button>
+    </form>
+</div>
+</html>

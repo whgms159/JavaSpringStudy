@@ -1,0 +1,23 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.service.GroupService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class GroupController {
+	private final GroupService groupService;
+//	
+//	@GetMapping
+//	public List<Group> getAllGroup(){
+//		
+//	}
+
+}

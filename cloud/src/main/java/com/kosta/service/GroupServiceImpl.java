@@ -1,0 +1,66 @@
+package com.kosta.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.domain.StudyGroupDTO;
+import com.kosta.entity.Parti;
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.repository.GroupRepository;
+import com.kosta.repository.PartiRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class GroupServiceImpl implements GroupService{
+	private final GroupRepository groupRepository;
+	private final PartiRepository partiRepository;
+	
+
+	@Override
+	public List<StudyGroupDTO> getAllGroup() {
+		List<StudyGroup> all = groupRepository.findAll();
+		
+		List<StudyGroupDTO> resultList = all.stream().map(sg ->
+			StudyGroupDTO.setStudyGroupDTO(sg)
+		).toList();
+		
+		return resultList;
+	}
+
+
+	@Override
+	public StudyGroup save(StudyGroup sg, User user) {
+		sg.setLeader(user);
+		return groupRepository.save(sg);
+		
+	}
+
+
+	@Override
+	public void deleteGroup(int id) {
+		groupRepository.deleteById(id);
+		
+	}
+
+
+	@Override
+	public StudyGroupDTO findById(int id, User user) throws Exception {
+		Optional<StudyGroup> groupId = groupRepository.findById(id);
+		StudyGroup sg = groupId.orElseThrow(() -> new Exception("오류겐"));
+		
+		StudyGroupDTO studyGroupDTO = StudyGroupDTO.setStudyGroupDTO(sg);
+		studyGroupDTO.setMine(sg.getLeader().getId() == user.getId());
+		
+		List<Parti> pList = partiRepository.findByGroupId(id);
+		studyGroupDTO.setJoined(pList.stream().anyMatch(p -> p.getMember().getId() == user.getId()));
+		return studyGroupDTO;
+	}
+
+
+	
+}

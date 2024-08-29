@@ -1,0 +1,34 @@
+package com.kosta.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.entity.Parti;
+import com.kosta.repository.PartiRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class PartiServiceImpl implements PartiService{
+	private final PartiRepository partiRepository;
+
+	@Override
+	public List<Parti> getAllParti() {
+		
+		return null;
+	}
+
+	@Override
+	public void escapeParti(int id) {
+		
+		
+	}
+
+	@Override
+	public Parti save(int member, Parti parti) {
+		parti.setMember(member);
+		return null;
+	}
+}

@@ -1,0 +1,19 @@
+package com.kosta.service;
+
+import java.util.List;
+
+import com.kosta.entity.User;
+
+public interface UserService {
+
+	User save(User user);
+
+	User getUser();
+
+	List<User> getAllUser();
+
+	void deleteUser();
+
+	User modifyUser();
+
+}

@@ -1,0 +1,23 @@
+package com.kosta.domain;
+
+import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
+
+@AllArgsConstructor
+@Builder
+public class PartiDTO {
+	
+	private int id;
+	private UserDTO member;
+	private StudyGroupDTO group;
+	private LocalDate upadateAt;
+
+	public static 
+}

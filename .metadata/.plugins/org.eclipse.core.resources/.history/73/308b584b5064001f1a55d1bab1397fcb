@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<div layout:fragment="content">
+	<p>[[${sg.title}]]</p>
+	<p>[[${sg.leader.getName()}]]</p>
+	<p><span>모집 기간 [[${sg.startedAt}]]~[[${sg.finishedAt}]]</span></p>
+	<p></p>
+	<form th:if="${#authentication.principal.id eq sg.leader}" th:action="/studygroup/delete" th:method="DELETE" >
+        <button class="btn btn-danger" >삭제</button>
+       
+    </form>
+     <button class="btn btn-primary">신청</button>
+</div>
+
+
+</html>
+<!-- <form th:method="DELETE" th:if="${#authentication.principal.id eq sg.leader}" 
+           th:action="/studygroup/delete"> -->

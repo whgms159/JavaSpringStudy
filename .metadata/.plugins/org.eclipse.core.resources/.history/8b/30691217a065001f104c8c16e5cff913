@@ -1,0 +1,20 @@
+package com.kosta.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.kosta.entity.Parti;
+
+@Repository
+public interface PartiRepository extends JpaRepository<Parti, Integer> {
+
+	List<Parti> findByGroupId(int id);
+
+	
+
+	List<Parti> findByMember(int id);
+
+
+}

@@ -1,0 +1,13 @@
+package com.kosta.service;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+	private final UserRepository userRepository;
+}

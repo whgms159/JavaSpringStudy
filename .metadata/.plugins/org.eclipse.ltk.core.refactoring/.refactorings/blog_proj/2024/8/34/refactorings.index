@@ -1,0 +1,20 @@
+1724217206514	Rename resource 'application.properties'
+1724220983012	Extract local variable 'articleList'
+1724221637146	Extract local variable 'savedArticle'
+1724221698980	Extract local variable 'optArticle'
+1724222010885	Extract local variable 'optArticle'
+1724222055933	Extract local variable 'article'
+1724223659450	Extract local variable 'originSize'
+1724223720140	Extract local variable 'savedArticle'
+1724223960358	Extract local variable 'article'
+1724224689825	Extract local variable 'article'
+1724225599653	Extract local variable 'foundArticle'
+1724225983518	Extract local variable 'originArticle'
+1724285712584	Extract local variable 'resultList'
+1724285727809	Extract local variable 'savedArticle1'
+1724285735824	Extract local variable 'savedArticle2'
+1724308862090	Copy file
+1724389990204	Extract local variable 'auth'
+1724396576915	Move files
+1724398079728	Copy file
+1724399195685	Move files

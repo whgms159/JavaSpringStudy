@@ -1,0 +1,107 @@
+package com.kosta.controller;
+
+import java.util.List;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kosta.entity.Article;
+import com.kosta.entity.User;
+import com.kosta.service.BlogService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+@RequestMapping("/blog/*")
+public class BlogController {
+	
+	private final BlogService blogService;
+	
+	@GetMapping("/add") //추가 화면
+	public String addPage() {
+		return "/blog/form";
+	}
+	@PostMapping("/add") //실제 추가 동작
+	public String addAriticle(Article article, @AuthenticationPrincipal User user) {
+		blogService.save(article, user);
+		System.out.println(user);
+		return "redirect:/blog/list";
+	}
+	@GetMapping("/list")
+	public String listPage(@RequestParam(required=false, name="keyword") String keyword,@RequestParam(required=false, name="order") String order, Model model) throws Exception {
+		List<Article> articleList;
+		if(keyword!=null || order != null) {
+			articleList=blogService.searchAndOrder(keyword, order);
+		}else {
+			articleList=blogService.findAll();
+		}
+		
+		model.addAttribute("list", articleList);
+		return "/blog/list";
+	}
+	@GetMapping("/detail/{id}")
+	public String detailPage(@PathVariable("id") Long id, Model model) {
+		try {
+			Article article = blogService.findById(id);
+			model.addAttribute("article", article);
+			return "/blog/detail";
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+			model.addAttribute("errMsg", e.getMessage());
+			return "error";
+		}
+		
+		
+	}
+	@DeleteMapping("/delete/{id}")
+	public String deleteArticle(@PathVariable("id") Long id, Model model, @AuthenticationPrincipal User user) {
+		try {
+			blogService.deletedById(id,user);
+			return "redirect:/blog/list";
+		} catch (Exception e) {
+			model.addAttribute("errMsg", e.getMessage());
+			return "error";
+		}
+		
+	}
+	@GetMapping("/modify/{id}")
+	public String modifyPage(@PathVariable("id") Long id, Model model) {
+		
+		try {
+			Article article = blogService.findById(id);
+			model.addAttribute("article", article);
+			return "/blog/form";
+		} catch (Exception e) {
+			model.addAttribute("errMsg", e.getMessage());
+			return "error";
+		}
+		
+		
+	}
+	@PatchMapping("/modify")
+	public String modifyArticle(Article article, Model model, @AuthenticationPrincipal User user) {
+		try {
+			blogService.update(article, user);
+			return "redirect:/blog/detail/"+article.getId();
+		} catch (Exception e) {
+			model.addAttribute("errMsg", e.getMessage());
+			return "error";
+		}
+		
+	}
+	
+	
+	
+	
+
+}

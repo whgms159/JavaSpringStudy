@@ -1,0 +1,28 @@
+package com.kosta.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.kosta.service.UserService;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class UserController {
+	private final UserService userService;
+//	
+//	@GetMapping("/list")
+//	public List<User> getAllUser(){}
+//	
+//	@GetMapping("/list")
+//	public User getuser() {}
+//	
+//	@PostMapping("/add")
+//	public User addUser() {}
+//	
+//	@DeleteMapping("/delete")
+//	public String deleteUser() {}
+//	
+//	@PatchMapping("/modify")
+//	public String modifyUser() {}
+}

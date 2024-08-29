@@ -1,0 +1,14 @@
+package com.kosta.service;
+
+import org.springframework.stereotype.Service;
+
+import com.kosta.repository.GroupRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class GroupServiceImpl implements GroupService{
+	private GroupRepository groupRepository;
+
+}

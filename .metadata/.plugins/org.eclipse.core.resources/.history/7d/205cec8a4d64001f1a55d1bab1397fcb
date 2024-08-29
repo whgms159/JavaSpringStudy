@@ -1,0 +1,56 @@
+package com.kosta.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+
+import com.kosta.entity.StudyGroup;
+import com.kosta.entity.User;
+import com.kosta.repository.GroupRepository;
+import com.kosta.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class GroupServiceImpl implements GroupService{
+	private final GroupRepository groupRepository;
+	private final UserRepository userRepository;
+
+	@Override
+	public List<StudyGroup> getAllGroup() {
+		return groupRepository.findAll();
+	}
+
+
+	@Override
+	public StudyGroup save(StudyGroup sg, User user) {
+		sg.setLeader(user);
+		return groupRepository.save(sg);
+		
+	}
+
+
+	@Override
+	public void deleteGroup(int id) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String cUsername = authentication.getName();
+		User cUser = userRepository.findByUsername(cUsername).orElseThrow(() -> new Exception("넌 아니야"));
+		
+		
+	}
+
+
+	@Override
+	public StudyGroup findById(int id) throws Exception {
+		Optional<StudyGroup> groupId = groupRepository.findById(id);
+		StudyGroup sg = groupId.orElseThrow(() -> new Exception("이건 아니지"));
+		return sg;
+	}
+
+
+	
+}

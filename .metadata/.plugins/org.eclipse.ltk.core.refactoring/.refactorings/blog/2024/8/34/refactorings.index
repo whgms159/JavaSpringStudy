@@ -1,0 +1,10 @@
+1724288995699	Rename resource 'application.properties'
+1724289049872	Copy file
+1724289056191	Copy file
+1724292195013	Extract local variable 'byId'
+1724293038134	Extract local variable 'article'
+1724297383552	Extract local variable 'list'
+1724315184020	Rename type 'UserServiceImpl'
+1724315813684	Copy file
+1724371748816	Rename package 'com.kosta.config'
+1724371872810	Extract local variable 'arti'

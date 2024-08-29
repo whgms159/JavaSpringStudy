@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+
+<head>
+    <!-- 부트스트랩 CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 아이콘 추가 (선택사항) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 사용자 정의 CSS 애니메이션 추가 -->
+    <style>
+        /* 전체 페이지 로딩 애니메이션 */
+        body {
+            opacity: 0;
+            animation: fadeInBody 1s ease-out forwards;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* 카드 애니메이션 효과 */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            border-color: #28a745;
+        }
+
+        /* 버튼 애니메이션 */
+        .btn-success {
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 25px;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 카드 헤더와 바디 스타일링 */
+        .card-header {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        /* 마진과 패딩 조정 */
+        .container {
+            padding: 20px;
+        }
+
+        .row {
+            margin-top: 20px;
+        }
+
+        .col-md-4 {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row">
+        <!-- 동적으로 생성되는 카드 요소 -->
+        <div class="col-md-4" th:each="group : ${list}">
+            <div class="card border border-2 border-success animated-card" style="height: 150px;">
+                <div class="card-header">
+                    [[${group.id}]]
+                </div>
+                <div class="card-body" th:onclick="|location.href='/studygroup/detail/'+${group.id}|"
+                     role="button">
+                    <h5 class="card-title">[[${group.title}]]</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-success btn-lg mt-4"
+            onclick="location.href='/studygroup/add'">그룹 추가
+    </button>
+</div>
+
+<!-- 부트스트랩 및 jQuery JS 추가 -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

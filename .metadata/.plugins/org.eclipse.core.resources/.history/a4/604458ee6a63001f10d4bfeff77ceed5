@@ -1,0 +1,36 @@
+package com.kosta.common;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@EnableWebSecurity
+@Configuration
+public class SecurityConfig {
+	private final UserDetailsService userDetatilsService;
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		return http.authorizeHttpRequests(auth -> auth.requestMatchers(
+				//초기 login 과 join 만 인가
+				new AntPathRequestMatcher("/login"), new AntPathRequestMatcher("/join")
+				).permitAll().requestMatchers(new AntPathRequestMatcher("/leader/**")).hasRole("LEADER") 
+				//나머지 URL은 인증이 필요
+				.anyRequest().authenticated())
+				//폼 기반 로그인 설정(로그인은 login.html로 이동하고, 성공 시 "group/list" 로 연결 
+				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/group/list"))
+				//로그아웃 설정(로그아웃이 성공적으로 되면 "/login" 으로 연결, 동시에 세션 만료
+				.logout(logout -> logout.logoutSuccessUrl("/group/list").invalidateHttpSession(true))
+				//CSRF 공격 방지 설정
+				.csrf(AbstractHttpConfigurer::disable)
+				//CORS 비활성화
+				.cors(AbstractHttpConfigurer::disable).build();
+	}
+}
