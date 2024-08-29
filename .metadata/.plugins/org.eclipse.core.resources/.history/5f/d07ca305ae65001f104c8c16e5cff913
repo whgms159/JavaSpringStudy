@@ -170,7 +170,19 @@
     <div class="animated-section">
         <div class="card mb-4">
             <div class="card-body">
-                <h4 class="card-title text-animate">스터디 참여 목록</h4>
+                <h4 class="card-title text-animate">피곤에 좋은 영양제</h4>
+                <div class="card-header bg-success-subtle">[[${parti.id}]]</div>
+             <div class="card-body"
+                th:onclick="|location.href='/studygroup/detail/'+${parti.group.id}|"
+                role='button'>
+                <span class="card-title">작성자 : [[${parti.member.username}]]</span><br/>
+                <span class="card-title">제목 : [[${parti.group.title}]]</span>
+                <form action="/mystudy/delete" th:method="DELETE">
+                    <input type="hidden" name="id" th:value="${parti.id}">
+                    <button class="btn btn-danger">삭제</button>
+                </form>
+
+            </div>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <a href="https://namu.wiki/w/%EB%B9%84%ED%83%80%EB%AF%BC">비타민</a>
@@ -194,8 +206,6 @@
 				<form action="/mystudy/delete" th:method="DELETE">
 				    <input type="hidden" name="id" th:value="${parti.id}">
 					<button class="btn btn-danger">삭제</button>
-					
-					
 				</form>
 
 			</div>
