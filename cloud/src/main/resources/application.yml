@@ -3,7 +3,7 @@ spring:
     name: cloud
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/study_cloud
+    url: jdbc:mysql://18.216.217.159:3306/study_cloud
     username: root
     password: 1234
   jpa:
@@ -20,4 +20,6 @@ spring:
       filter:
         enabled: true
 
+server:
+  port: 8080
      

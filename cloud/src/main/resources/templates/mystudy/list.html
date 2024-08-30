@@ -166,22 +166,8 @@
     </style>
 </head>
 <div layout:fragment="content" class="container mt-4">
-    <!-- 주요 콘텐츠 영역 -->
-    <div class="animated-section">
-        <div class="card mb-4">
-            <div class="card-body">
-                <h4 class="card-title text-animate">스터디 참여 목록</h4>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a href="https://namu.wiki/w/%EB%B9%84%ED%83%80%EB%AF%BC">비타민</a>
-                    </li>
-                   
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div layout:fragment="content">
+
+
 	<div class="col" th:each="parti : ${partiList}">
 		<div class="card mt-4 border border-2 border-success"
 			style="height: 150px">
@@ -194,8 +180,6 @@
 				<form action="/mystudy/delete" th:method="DELETE">
 				    <input type="hidden" name="id" th:value="${parti.id}">
 					<button class="btn btn-danger">삭제</button>
-					
-					
 				</form>
 
 			</div>

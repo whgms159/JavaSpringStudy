@@ -8,6 +8,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="gra"/>
 			<item value="authen"/>
 			<item value="slide"/>
 			<item value="article"/>
@@ -22,7 +23,6 @@
 			<item value="each"/>
 			<item value="smal"/>
 			<item value="close"/>
-			<item value="role"/>
 		</list>
 		<list key="replacehistory">
 			<item value=" "/>
